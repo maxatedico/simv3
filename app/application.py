@@ -20,8 +20,10 @@ Config.read("app/config")
 
 @app.route('/stream')
 def stream():
+    other_root = Config.get('Paths', 'other_root')
+    
     def generate():
-        with open('/home/maxrosoff/PycharmProjects/web/app/logger.log') as f:
+        with open(other_root + 'logger.log') as f:
             lines = f.readlines()
             liner = [x.strip() + '\n' for x in lines]
             result = []
