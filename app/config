@@ -5,7 +5,7 @@ gcdep=/opt/pirs-2.0.1/Profiles/GC-depth_Profiles/humNew.gcdep_100.dat
 
 [Paths]
 out_dir_root=/mnt/archive/adam_and_max/
-other_root=/home/maxr/simulation/simulationv3/
+other_root=/home/maxrosoff/
 
 [Options]
 errorrate=0

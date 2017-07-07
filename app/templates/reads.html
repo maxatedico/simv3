@@ -302,7 +302,7 @@
 $(document).ready(function(){
 
     setInterval(function(){
-         $.get("/stream_sqrt",function(result){
+         $.get("/stream",function(result){
           $('#output').html("");
           $('#output').html(result);
        });

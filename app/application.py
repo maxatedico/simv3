@@ -18,7 +18,7 @@ Config = ConfigParser.ConfigParser()
 Config.read("app/config")
 
 
-@app.route('/stream_sqrt')
+@app.route('/stream')
 def stream():
     def generate():
         with open('/home/maxrosoff/PycharmProjects/web/app/logger.log') as f:
@@ -26,9 +26,10 @@ def stream():
             liner = [x.strip() + '\n' for x in lines]
             result = []
             for line in liner:
-                if "m" not in line:
+                if "stream" not in line:
                     result.append(line)
-                    continue
+                    if len(result) > 20:
+                        result.pop(0)
             return result
 
     return app.response_class(generate(), mimetype='text/plain')
@@ -46,7 +47,8 @@ def index():
             gcdep = Config.get('Profiles', 'gcdep')
             out_dir_root = Config.get('Paths', 'out_dir_root')
             output = out_dir_root + 'mutations.vcf'
-
+            bedtools_vcf_name = form.bed_vcf_name.data
+            bed_file_path = form.bed_file.data
             logging.info('New VCF Path: ' + output)
 
             vcf = form.vcf_path.data
@@ -54,7 +56,7 @@ def index():
 
             logging.info("Acquired Values")
 
-            mutate.mutating(mutate_rate, vcf, output)
+            mutate.mutating(mutate_rate, vcf, bedtools_vcf_name, output, bed_file_path)
 
             logging.info("Created VCF")
 

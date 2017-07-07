@@ -21,22 +21,23 @@ def mutating(desired_interval, input_vcf, intersection_name, output_vcf, bed_fil
         open_gz_safe = gzip.open
     else:
         open_gz_safe = open
-    bedtoolsrun = "bedtools intersect -a " + input_vcf + "  -b " + bed_file + "  > " + intersection_name
-    logging.info(bedtoolsrun)
-    logging.info( "Running bedtools intersect function")
-
-    try:
-        subprocess.check_output(bedtoolsrun, shell=True)
-    except RuntimeError:
-        logging.info("Bedtools failed due to runtime error.")
-    except TypeError:
-        logging.info("Bedtools failed due to type error.")
-    except ValueError:
-        logging.info("Bedtools failed due to value  error.")
-    except NameError:
-        logging.info("Bedtools failed due to name  error.")
-
-    logging.info("Beginning to take interval samples from bedtools' outputted vcf")
+    if bed_file != "":
+        bedtoolsrun ="bedtools intersect -a " + input_vcf +" -b "+ bed_file +" > " + intersection_name
+        logging.info(bedtoolsrun)
+        logging.info( "Running bedtools intersect function")
+        try:
+            subprocess.check_output(bedtoolsrun, shell=True)
+        except RuntimeError:
+            logging.info("Bedtools failed due to runtime error.")
+        except TypeError:
+            logging.info("Bedtools failed due to type error.")
+        except ValueError:
+            logging.info("Bedtools failed due to value  error.")
+        except NameError:
+            logging.info("Bedtools failed due to name  error.")
+    else:
+        intersection_name = input_vcf
+    logging.info("Beginning to take interval samples from outputted vcf")
 
     with open(output_vcf, 'w') as stream_out:
         with open_gz_safe(intersection_name) as stream_in:
