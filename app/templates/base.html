@@ -19,7 +19,7 @@
       color: #818181;
   }
   h2 {
-      font-size: 24px;
+      font-size: 36px;
       text-transform: uppercase;
       color: #303030;
       font-weight: 600;
@@ -33,7 +33,7 @@
       margin-bottom: 30px;
   }
   .jumbotron {
-      background-color: #f4511e;
+      background-color: #bf010b;
       color: #fff;
       padding: 100px;
       font-family: Montserrat, sans-serif;
@@ -42,7 +42,7 @@
       padding: 60px 50px;
   }
   .bg-grey {
-      background-color: #f6f6f6;
+      background-color: #e3eefc;
   }
   .logo-small {
       color: #f4511e;
@@ -64,13 +64,13 @@
   }
   .carousel-control.right, .carousel-control.left {
       background-image: none;
-      color: #f4511e;
+      color: #bf010b;
   }
   .carousel-indicators li {
-      border-color: #f4511e;
+      border-color: #bf010b;
   }
   .carousel-indicators li.active {
-      background-color: #f4511e;
+      background-color: #bf010b;
   }
   .item h4 {
       font-size: 19px;
@@ -122,7 +122,7 @@
   }
   .navbar {
       margin-bottom: 0;
-      background-color: #f4511e;
+      background-color: #bf010b;
       z-index: 9999;
       border: 0;
       font-size: 12px !important;
@@ -214,7 +214,7 @@
   </div>
 </nav>
 
-
+<br>
 <div class="jumbotron text-center">
   <h1>The Simulator</h1>
   <p>Elegant, Defined, Precise</p>
@@ -229,15 +229,18 @@
           <p>Log:</p>
           <pre id="output"></pre>
         <br>
-        <br>
 
         <h2>The Pipeline</h2><br>
         <div class="form-group">
-          <label>Database Name:</label><br>
+          <label>Dataset to Create and Populate:</label><br>
           {{ form.data_set(size=120) }}
         </div>
+          <div class="form-group">
+            <label>Reference FASTA for Dataset: (Example: Hg19)</label><br>
+            {{ form.fastar(size=120) }}
+        </div>
         <div class="form-group">
-          <label>Filepath to VCF:</label><br>
+          <label>Filepath to VCF: (DbSnp, Etc.)</label><br>
           {{ form.vcf_path(size=120) }}
         </div>
         <div class="form-group">
@@ -245,15 +248,12 @@
         {{ form.bed_file(size=120) }}
         </div>
         <div class="form-group">
-        <label>Name of Created VCF</label><br>
-        {{ form.bed_vcf_name(size=120) }}
-        </div>
         <div class="form-group">
-          <label>Rate of Mutation:</label><br>
+          <label>Amount of Space in Between Mutations: (Example: 500, 1000)</label><br>
           {{ form.mutation_rate(size=120) }}
         </div>
         <div class="form-group">
-          <label>Amount of Base-Calling Error:</label><br>
+          <label>Amount of Base-Calling Error: (Example: 0.5, 1)</label><br>
           {{ form.base_error(size=120) }}
         </div>
         <div class="form-group">
@@ -265,6 +265,7 @@
       </div>
 
     </div>
+  </div>
   </div>
 </form>
 
@@ -294,7 +295,7 @@
         <h4>"Could I... BE any more happy with this Simulator?"<br><span>Miles, Overlord of the Interns</span></h4>
       </div>
     </div>
-
+    <br>
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

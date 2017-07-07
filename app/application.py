@@ -3,7 +3,7 @@ import logging
 
 logging.basicConfig(filename='app/logger.log', level=logging.INFO, filemode='w', format='%(asctime)s %(message)s', datefmt='%m/%d - %I:%M:%S')
 
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, request, redirect, url_for
 from app import app
 from .forms import Pipeline
 from .forms import Mutate
@@ -18,9 +18,14 @@ Config = ConfigParser.ConfigParser()
 Config.read("app/config")
 
 
+@app.route('/')
+def index():
+    return redirect(url_for('pipeline'))
+
+
 @app.route('/stream')
 def stream():
-    other_root = Config.get('Paths', 'other_root')
+    other_root = Config.get('Paths', 'log_root')
 
     def generate():
         with open(other_root + 'logger.log') as f:
@@ -30,15 +35,15 @@ def stream():
             for line in liner:
                 if "stream" not in line:
                     result.append(line)
-                    if len(result) > 20:
+                    if len(result) > 10:
                         result.pop(0)
             return result
 
     return app.response_class(generate(), mimetype='text/plain')
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
+@app.route('/pipeline', methods=['GET', 'POST'])
+def pipeline():
     form = Pipeline()
 
     if request.method == 'POST':
@@ -49,7 +54,6 @@ def index():
             gcdep = Config.get('Profiles', 'gcdep')
             out_dir_root = Config.get('Paths', 'out_dir_root')
             output = out_dir_root + 'mutations.vcf'
-            bedtools_vcf_name = form.bed_vcf_name.data
             bed_file_path = form.bed_file.data
             logging.info('New VCF Path: ' + output)
 
@@ -58,9 +62,13 @@ def index():
 
             logging.info("Acquired Values")
 
-            mutate.mutating(mutate_rate, vcf, bedtools_vcf_name, output, bed_file_path)
+            mutate.mutating(mutate_rate, vcf, output, bed_file_path)
 
             logging.info("Created VCF")
+
+            fastar = form.fastar.data
+
+            mutate.check_if_dataset_exists(form.data_set.data, fastar)
 
             mutate.upload_to_db('truth_set_vcf', form.data_set.data, output)
 
@@ -104,15 +112,18 @@ def dbmutate():
             output = out_dir_root + 'mutations.vcf'
             #ensure_dir(output)
             mutate_rate = int(form.mutation_rate.data)
-            bedtools_vcf_name = form.bed_vcf_name.data
             bed_file_path = form.bed_file.data
 
             logging.info("Acquired Values")
             logging.info('New VCF Path: ' + output)
 
-            mutate.mutating(mutate_rate, vcf, bedtools_vcf_name, output, bed_file_path)
+            mutate.mutating(mutate_rate, vcf, output, bed_file_path)
 
             logging.info("Created VCF")
+
+            fastar = form.fastar.data
+
+            mutate.check_if_dataset_exists(form.data_set.data, fastar)
 
             mutate.upload_to_db('truth_set_vcf', form.data_set_mutate.data, output)
 
