@@ -1,0 +1,11 @@
+[Profiles]
+PE100=/opt/pirs-2.0.1/Profiles/Base-Calling_Profiles/humNew.PE100.matrix.gz
+indels=/opt/pirs-2.0.1/Profiles/InDel_Profiles/phixv2.InDel.matrix
+gcdep=/opt/pirs-2.0.1/Profiles/GC-depth_Profiles/humNew.gcdep_100.dat
+
+[Paths]
+out_dir_root=/mnt/archive/adam_and_max/
+other_root=/home/maxr/simulation/simulationv3/
+
+[Options]
+errorrate=0
