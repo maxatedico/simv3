@@ -21,7 +21,7 @@ Config.read("app/config")
 @app.route('/stream')
 def stream():
     other_root = Config.get('Paths', 'other_root')
-    
+
     def generate():
         with open(other_root + 'logger.log') as f:
             lines = f.readlines()

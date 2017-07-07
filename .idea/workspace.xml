@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mutate.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mutate.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/library/mutate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+            <state relative-caret-position="-720">
+              <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+            <state relative-caret-position="251">
+              <caret line="49" column="62" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -158,10 +158,10 @@
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/templates/reads.html" />
         <option value="$PROJECT_DIR$/app/templates/mutations.html" />
-        <option value="$PROJECT_DIR$/app/library/mutate.py" />
         <option value="$PROJECT_DIR$/app/logger.log" />
         <option value="$PROJECT_DIR$/app/config" />
         <option value="$PROJECT_DIR$/app/application.py" />
+        <option value="$PROJECT_DIR$/app/library/mutate.py" />
       </list>
     </option>
   </component>
@@ -571,18 +571,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/library/mutate.py">
+    <entry file="file://$PROJECT_DIR$/app/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="251">
+          <caret line="49" column="62" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/application.py">
+    <entry file="file://$PROJECT_DIR$/app/library/mutate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        <state relative-caret-position="-720">
+          <caret line="25" column="22" lean-forward="false" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
           <folding />
         </state>
       </provider>

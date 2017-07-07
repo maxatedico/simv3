@@ -22,7 +22,8 @@ def mutating(desired_interval, input_vcf, intersection_name, output_vcf, bed_fil
     else:
         open_gz_safe = open
     if bed_file != "":
-        bedtoolsrun ="bedtools intersect -a " + input_vcf +" -b "+ bed_file +" > " + intersection_name
+        out_dir_root = Config.get('Paths', 'out_dir_root')
+        bedtoolsrun = "bedtools intersect -a " + input_vcf + " -b " + bed_file + " > " + out_dir_root + intersection_name
         logging.info(bedtoolsrun)
         logging.info( "Running bedtools intersect function")
         try:
