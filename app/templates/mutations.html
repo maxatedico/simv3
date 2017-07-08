@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
+  <style>
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -42,7 +42,24 @@
   .bg-grey {
       background-color: #e3eefc;
   }
-
+  .logo-small {
+      color: #f4511e;
+      font-size: 50px;
+  }
+  .logo {
+      color: #f4511e;
+      font-size: 200px;
+  }
+  .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+  }
+  .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+  }
   .carousel-control.right, .carousel-control.left {
       background-image: none;
       color: #bf010b;
@@ -115,6 +132,10 @@
   .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
   }
+  .navbar-left>img {
+    height: 10%;
+    width: auto;
+    }
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #f4511e !important;
       background-color: #fff !important;
@@ -171,30 +192,41 @@
         font-size: 150px;
     }
   }
+
+.tooltip > .tooltip-inner {
+    background-color: #bf010b;
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 15px;
+}
   </style>
 </head>
 <body id="/" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">THE SIMULATOR</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
-        <li><a href="/reads">GENERATE READS</a></li>
-        <li><a href="/">VCF READS PIPELINE</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
+            <a class="navbar-brand" rel="home" href="http://www.edicogenome.com/" title="Buy Sell Rent Everyting">
+                <img style="max-width:100px; margin-top: -7px;"
+                     src="http://www.edicogenome.com/wp-content/uploads/2015/02/Edico-Genome-Logo-Large-Website.png">
+            </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
+                <li><a href="/reads">GENERATE READS</a></li>
+                <li><a href="/">VCF READS PIPELINE</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
 
 <br>
 <div class="jumbotron text-center">
@@ -205,44 +237,44 @@
 
 <!-- Container (Mutation Section) -->
 <form action="" method="post" name="mutate">
-<div id="Mutations" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-9">
-          <p>Log:</p>
-          <pre id="output"></pre>
+  <div id="Mutations" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-9">
+        <p>Log:</p>
+        <pre id="output"></pre>
 
-      <br>
+        <br>
 
-      <h2>The Mutation Simulator</h2><br>
-      <div class="form-group">
-        <label>Dataset to Create and Populate:</label><br>
-        {{ form.data_set_mutate(size=120) }}
+        <h2>The Mutation Simulator</h2><br>
+        <div class="form-group">
+          <label>Dataset to Create and Populate:</label><br>
+          {{ form.data_set_mutate(size=120) }}
+        </div>
+        <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: Hg19">Reference FASTA for Dataset:</label><br>
+                    {{ form.fastar(size=120) }}
+                </div>
+        <div class="form-group">
+          <label data-toggle="tooltip" data-placement="right" title="Example: DbSnp, Etc.">Filepath to VCF:</label><br>
+          {{ form.vcf_path(size=120) }}
+        </div>
+        <div class="form-group">
+          <label>Filepath to Bed-File:</label><br>
+          {{ form.bed_file(size=120) }}
+        </div>
+        <div class="form-group">
+          <label data-toggle="tooltip" data-placement="right" title="Example: 500, 1000">Amount of Space in Between Mutations:</label><br>
+          {{ form.mutation_rate(size=120) }}
+        </div>
+        <br>
+        <input type="submit" name="submit" value="Create Truth VCF">
       </div>
-      <div class="form-group">
-        <label>Reference FASTA for Dataset: (Example: Hg19)</label><br>
-        {{ form.fastar(size=120) }}
-      </div>
-      <div class="form-group">
-        <label>Filepath to Master VCF: (DbSnp, Etc.)</label><br>
-        {{ form.vcf_path(size=120) }}
-      </div>
-      <div class="form-group">
-        <label>Filepath to Bed-File:</label><br>
-        {{ form.bed_file(size=120) }}
-      </div>
-      <div class="form-group">
-        <label>Amount of Space in Between Mutations: (Example: 500, 1000)</label><br>
-        {{ form.mutation_rate(size=120) }}
-      </div>
-      <br>
-      <input type="submit" name="submit" value="Create Truth VCF">
-    </div>
 
-    <!--<div class="col-sm">-->
+      <!--<div class="col-sm">-->
       <!--<img src="http://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/cc_shutterstock_338933429_16x9.jpg?itok=zaKu5Hwr" class="img-rounded" alt="Water" width="400" height="300">-->
-    <!--</div>-->
+      <!--</div>-->
+    </div>
   </div>
-</div>
 </form>
 
 <!-- Container (Portfolio Section) -->
@@ -284,6 +316,12 @@
 
 <footer class="container-fluid text-center">
 </footer>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 <script>
 

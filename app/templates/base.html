@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
 
-  <title>The Simulator</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!--<script type="text/javascript" src='/static/logtail.js'></script>-->
+    <title>The Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src='/static/logtail.js'></script>-->
 
-  <style>
+    <style>
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -134,6 +134,10 @@
   .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
   }
+  .navbar-left>img {
+    height: 10%;
+    width: auto;
+    }
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #f4511e !important;
       background-color: #fff !important;
@@ -190,126 +194,141 @@
         font-size: 150px;
     }
   }
+
+.tooltip > .tooltip-inner {
+    background-color: #bf010b;
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 15px;
+}
   </style>
 </head>
 <body id="/" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">THE SIMULATOR</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
-        <li><a href="/reads">GENERATE READS</a></li>
-        <li><a href="/">VCF READS PIPELINE</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
+            <a class="navbar-brand" rel="home" href="http://www.edicogenome.com/" title="Buy Sell Rent Everyting">
+                <img style="max-width:100px; margin-top: -7px;"
+                     src="http://www.edicogenome.com/wp-content/uploads/2015/02/Edico-Genome-Logo-Large-Website.png">
+            </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
+                <li><a href="/reads">GENERATE READS</a></li>
+                <li><a href="/">VCF READS PIPELINE</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
 <br>
 <div class="jumbotron text-center">
-  <h1>The Simulator</h1>
-  <p>Elegant, Defined, Precise</p>
+    <h1>The Simulator</h1>
+    <p>Elegant, Defined, Precise</p>
 </div>
 
 
 <!-- Container Pipeline -->
 <form action="" method="post" name="pipeline">
-  <div id="pipeline" class="container-fluid">
-    <div class="row">
-      <div class="col-sm-9">
-          <p>Log:</p>
-          <pre id="output"></pre>
-        <br>
+    <div id="pipeline" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+                <p>Log:</p>
+                <pre id="output"></pre>
+                <br>
 
-        <h2>The Pipeline</h2><br>
-        <div class="form-group">
-          <label>Dataset to Create and Populate:</label><br>
-          {{ form.data_set(size=120) }}
-        </div>
-          <div class="form-group">
-            <label>Reference FASTA for Dataset: (Example: Hg19)</label><br>
-            {{ form.fastar(size=120) }}
-        </div>
-        <div class="form-group">
-          <label>Filepath to VCF: (DbSnp, Etc.)</label><br>
-          {{ form.vcf_path(size=120) }}
-        </div>
-        <div class="form-group">
-        <label>Filepath to Bed-File:</label><br>
-        {{ form.bed_file(size=120) }}
-        </div>
-        <div class="form-group">
-        <div class="form-group">
-          <label>Amount of Space in Between Mutations: (Example: 500, 1000)</label><br>
-          {{ form.mutation_rate(size=120) }}
-        </div>
-        <div class="form-group">
-          <label>Amount of Base-Calling Error: (Example: 0.5, 1)</label><br>
-          {{ form.base_error(size=120) }}
-        </div>
-        <div class="form-group">
-          <label>Indel Error</label><br>
-          {{ form.indel_error }}
-        </div>
+                <h2>The Pipeline</h2><br>
+                <div class="form-group">
+                    <label>Dataset to Create and Populate:</label><br>
+                    {{ form.data_set(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: Hg19">Reference FASTA for Dataset:</label><br>
+                    {{ form.fastar(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: DbSnp, Etc.">Filepath to VCF:</label><br>
+                    {{ form.vcf_path(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label>Filepath to Bed-File:</label><br>
+                    {{ form.bed_file(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: 500, 1000">Amount of Space in Between Mutations:</label><br>
+                    {{ form.mutation_rate(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: Example: 0.5, 1">Amount of Base-Calling Error:</label><br>
+                    {{ form.base_error(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label>Indel Error</label><br>
+                    {{ form.indel_error }}
+                </div>
 
-        <input type="submit" name="submit" value="Run Pipeline">
-      </div>
+                <input type="submit" name="submit" value="Run Pipeline">
 
+            </div>
+        </div>
     </div>
-  </div>
-  </div>
 </form>
 
 
 <!-- Container (Portfolio Section) -->
 <div id="portfolio" class="container-fluid text-center bg-grey">
-  <br>
-
-  <h2>What our users say</h2>
-  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <h4>"This simulator is the best. I am so happy with the result!"<br><span>Rami, Engineering Enthusiast</span></h4>
-      </div>
-      <div class="item">
-        <h4>"One word... WOW!!"<br><span>Theo, Programming Wizard</span></h4>
-      </div>
-      <div class="item">
-        <h4>"Could I... BE any more happy with this Simulator?"<br><span>Miles, Overlord of the Interns</span></h4>
-      </div>
-    </div>
     <br>
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+
+    <h2>What our users say</h2>
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <h4>"This simulator is the best. I am so happy with the result!"<br><span>Rami, Engineering Enthusiast</span></h4>
+            </div>
+            <div class="item">
+                <h4>"One word... WOW!!"<br><span>Theo, Programming Wizard</span></h4>
+            </div>
+            <div class="item">
+                <h4>"Could I... BE any more happy with this Simulator?"<br><span>Miles, Overlord of the Interns</span></h4>
+            </div>
+        </div>
+        <br>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 
 <footer class="container-fluid text-center">
 </footer>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 <script>
 

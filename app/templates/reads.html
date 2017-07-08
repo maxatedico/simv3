@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
+  <style>
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -132,6 +132,10 @@
   .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
   }
+  .navbar-left>img {
+    height: 10%;
+    width: auto;
+    }
   .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #f4511e !important;
       background-color: #fff !important;
@@ -188,31 +192,42 @@
         font-size: 150px;
     }
   }
+
+.tooltip > .tooltip-inner {
+    background-color: #bf010b;
+    color: #FFFFFF;
+    padding: 15px;
+    font-size: 15px;
+}
   </style>
 </head>
 <body id="/" data-spy="scroll" data-target=".navbar" data-offset="60">
-
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand">THE SIMULATOR</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
-        <li><a href="/reads">GENERATE READS</a></li>
-        <li><a href="/">VCF READS PIPELINE</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<br>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
+            <a class="navbar-brand" rel="home" href="http://www.edicogenome.com/" title="Buy Sell Rent Everyting">
+                <img style="max-width:100px; margin-top: -7px;"
+                     src="http://www.edicogenome.com/wp-content/uploads/2015/02/Edico-Genome-Logo-Large-Website.png">
+            </a>
+
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/vcf">CREATE DB ENTRY AND GENERATE VCF</a></li>
+                <li><a href="/reads">GENERATE READS</a></li>
+                <li><a href="/">VCF READS PIPELINE</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+</body>
+<br>
 
 <div class="jumbotron text-center">
   <h1>The Simulator</h1>
@@ -222,37 +237,37 @@
 
 <!-- Container (Reads Section) -->
 <form action="" method="post" name="reads">
-<div id="Reads" class="container-fluid">
-  <div class="row">
-    <!--<div class="col-sm-3">-->
+  <div id="Reads" class="container-fluid">
+    <div class="row">
+      <!--<div class="col-sm-3">-->
       <!--<img src="https://www.extremetech.com/wp-content/uploads/2012/08/dna-strand-blue-tgac-640x353.jpg" class="img-rounded" alt="Water" width="400" height="300">-->
-    <!--</div>-->
+      <!--</div>-->
 
-    <div class="col-sm-9">
-          <p>Log:</p>
-          <pre id="output"></pre>
+      <div class="col-sm-9">
+        <p>Log:</p>
+        <pre id="output"></pre>
 
-      <br>
+        <br>
 
-      <h2>The Reads Simulator</h2><br>
-      <div class="form-group">
-        <label>Dataset Name:</label><br>
-        {{ form.data_set_reads(size=120) }}
+        <h2>The Reads Simulator</h2><br>
+        <div class="form-group">
+          <label>Dataset Name:</label><br>
+          {{ form.data_set_reads(size=120) }}
+        </div>
+        <div class="form-group">
+          <label data-toggle="tooltip" data-placement="right" title="Example: Example: 0.5, 1">Amount of Base-Calling Error:</label><br>
+          {{ form.base_error(size=120) }}
+        </div>
+        <div class="form-group">
+          <label>Indel Error</label><br>
+          {{ form.indel_error }}
+        </div>
+        <input type="submit" name="submit" value="Generate Reads">
       </div>
-      <div class="form-group">
-        <label>Amount of Base-Calling Error: (Example: 0.5, 1)</label><br>
-        {{ form.base_error(size=120) }}
-      </div>
-      <div class="form-group">
-        <label>Indel Error</label><br>
-        {{ form.indel_error }}
-      </div>
-      <input type="submit" name="submit" value="Generate Reads">
+
+
     </div>
-
-
   </div>
-</div>
 </form>
 <br>
 <!-- Container (Portfolio Section) -->
@@ -295,6 +310,12 @@
 
 <footer class="container-fluid text-center">
 </footer>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 <script>
 
