@@ -60,10 +60,12 @@ def pipeline():
 
             # Create variables and acquire inputs
             output = out_dir_root + 'mutations.vcf'
+            dataset_name = form.dataset_name.data
             bed_file_path = form.bed_path.data
             fasta_ref = form.fasta_ref.data
             vcf = form.vcf_path.data
             mutate_rate = int(form.mutate_rate.data)
+
 
             logging.info('New VCF Path: ' + output)
             logging.info("Acquired Values")
@@ -79,18 +81,19 @@ def pipeline():
             logging.info('Zipped VCF')
 
             # Create and Uplaod to DB
-            mutate.check_if_dataset_exists(form.dataset_name.data)
-            mutate.upload_to_db('truth_set_vcf', form.dataset_name.data, output + '.gz')
+            mutate.check_if_dataset_exists(dataset_name)
+            mutate.upload_to_db('ref-type', dataset_name, fasta_ref)
+            mutate.upload_to_db('truth_set_vcf', dataset_name, output + '.gz')
 
             logging.info("Uploaded to Database")
 
             # Create and Assign Variables for PIRS
-            ref_number = reads.get_ref(form.dataset_name.data)
+            ref_number = reads.get_ref(dataset_name)
             fasta_ref = reads.get_fasta_ref(ref_number)
             base_error_rate = form.base_error_rate.data
             indel_error = form.indel_error.data
-            truth_vcf = reads.get_truth_vcf(form.dataset_name.data)
-            new_output = reads.get_truth_vcf(form.dataset_name.data)[:-13]
+            truth_vcf = reads.get_truth_vcf(dataset_name)
+            new_output = reads.get_truth_vcf(dataset_name)[:-13]
 
             logging.info('Acquired Values')
             logging.info('Reference FASTA: ' + ref_number)
@@ -102,7 +105,7 @@ def pipeline():
             logging.info('Finished!')
 
             # Upload
-            reads.upload_data(form.dataset_name.data, out_dir_root)
+            reads.upload_data(dataset_name, out_dir_root)
 
             logging.info("Uploaded FASTQs to Database")
 
