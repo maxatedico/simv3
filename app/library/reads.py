@@ -139,5 +139,5 @@ def simulate(fasta_ref, truth_vcf, base, indel, output, pe100, indelss, gcdeppp)
 
 def upload_data(dataset_name, root):
     out_dir_root = root
-    upload_to_db('fastq_location_1', dataset_name, out_dir_root + '_100_180_1.fq')
-    upload_to_db('fastq_location_2', dataset_name, out_dir_root + '_100_180_2.fq')
+    upload_to_db('fastq_location_1', dataset_name, out_dir_root + '_100_180_1.fq.gz')
+    upload_to_db('fastq_location_2', dataset_name, out_dir_root + '_100_180_2.fq.gz')
