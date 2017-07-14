@@ -179,11 +179,21 @@ def post_requests(data):
 
 # Dataset creator
 def create_dna_dataset(dataset_name):
+    print('Create dataset: {}, with ref: {}'.
+          format(dataset_name))
     data = {
         "name": dataset_name,
         "group_id": "2",
         "user": "simulator",
+        "values": [
+            {"key": 37, "value": "", "type": "text"},
+            {"key": 38, "value": "", "type": "text"},
+            {"key": 39, "value": "", "type": "text"},
+            {"key": 40, "value": "", "type": "text"},
+            {"key": 41, "value": "", "type": "text"},
+            {"key": 42, "value": "", "type": "text"},
+            {"key": 43, "value": "", "type": "text"}],
     }
-
     post_requests(data)
+
 
