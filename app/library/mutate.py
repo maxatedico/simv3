@@ -146,7 +146,7 @@ def upload_to_db(key_name, dataset_name, value):
 
 
 # Check if Dataset Exists and if not, Create an Entry
-def check_if_dataset_exists(dataset_name, reference):
+def check_if_dataset_exists(dataset_name):
     logging.info('Check if dataset exists')
     url = "http://data.edicogenome.com/api/get"
 
@@ -159,14 +159,10 @@ def check_if_dataset_exists(dataset_name, reference):
 
     if r:
         logging.info('Dataset exists')
-        if r != reference:
-            logging.info('but the exising reference: {} '
-                         'does not match the specified reference: {}'
-                         .format(r, reference))
-            sys.exit(1)
+
     else:
         logging.info('Dataset does not exist')
-        create_dna_dataset(dataset_name, reference)
+        create_dna_dataset(dataset_name)
 
 
 # Supporter for Above
@@ -182,21 +178,14 @@ def post_requests(data):
 
 
 # Dataset creator
-def create_dna_dataset(dataset_name, reference):
+def create_dna_dataset(dataset_name):
     logging.info('Create dataset: {}, with ref: {}'.
-                 format(dataset_name, reference))
+                 format(dataset_name))
     data = {
         "name": dataset_name,
         "group_id": "2",
         "user": "simulator",
-        "values": [
-            {"key": 37, "value": "", "type": "text"},
-            {"key": 38, "value": "", "type": "text"},
-            {"key": 39, "value": "", "type": "text"},
-            {"key": 40, "value": "", "type": "text"},
-            {"key": 41, "value": "", "type": "text"},
-            {"key": 42, "value": "", "type": "text"},
-            {"key": 43, "value": reference, "type": "fk"}],
     }
+    
     post_requests(data)
 

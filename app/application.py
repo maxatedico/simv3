@@ -79,7 +79,7 @@ def pipeline():
             logging.info('Zipped VCF')
 
             # Create and Uplaod to DB
-            mutate.check_if_dataset_exists(form.dataset_name.data, fasta_ref)
+            mutate.check_if_dataset_exists(form.dataset_name.data)
             mutate.upload_to_db('truth_set_vcf', form.dataset_name.data, output + '.gz')
 
             logging.info("Uploaded to Database")
