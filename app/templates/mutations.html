@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>The Simulator</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>The Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -230,88 +230,88 @@
 
 <br>
 <div class="jumbotron text-center">
-  <h1>The Simulator</h1>
-  <p>Elegant, Defined, Precise</p>
+    <h1>The Simulator</h1>
+    <p>Elegant, Defined, Precise</p>
 </div>
 
 
 <!-- Container (Mutation Section) -->
 <form action="" method="post" name="mutate">
-  <div id="Mutations" class="container-fluid">
-    <div class="row">
-      <div class="col-sm-9">
-        <p>Log:</p>
-        <pre id="output"></pre>
+    <div id="Mutations" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9">
+                <p>Log:</p>
+                <pre id="output"></pre>
 
-        <br>
+                <br>
 
-        <h2>The Mutation Simulator</h2><br>
-        <div class="form-group">
-          <label>Dataset to Create and Populate:</label><br>
-          {{ form.data_set_mutate(size=120) }}
-        </div>
-        <div class="form-group">
-                    <label data-toggle="tooltip" data-placement="right" title="Example: Hg19">Reference FASTA for Dataset:</label><br>
-                    {{ form.fastar(size=120) }}
+                <h2>The Mutation Simulator</h2><br>
+                <div class="form-group">
+                    <label>Dataset to Create and Populate:</label><br>
+                    {{ form.dataset_mutate(size=120) }}
                 </div>
-        <div class="form-group">
-          <label data-toggle="tooltip" data-placement="right" title="Example: DbSnp, Etc.">Filepath to VCF:</label><br>
-          {{ form.vcf_path(size=120) }}
-        </div>
-        <div class="form-group">
-          <label>Filepath to Bed-File:</label><br>
-          {{ form.bed_file(size=120) }}
-        </div>
-        <div class="form-group">
-          <label data-toggle="tooltip" data-placement="right" title="Example: 500, 1000">Amount of Space in Between Mutations:</label><br>
-          {{ form.mutation_rate(size=120) }}
-        </div>
-        <br>
-        <input type="submit" name="submit" value="Create Truth VCF">
-      </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: hg19">Reference FASTA for Dataset:</label><br>
+                    {{ form.fasta_ref(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: DbSnp, Etc.">Filepath to VCF:</label><br>
+                    {{ form.vcf_path(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label>Filepath to Bed-File:</label><br>
+                    {{ form.bed_path(size=120) }}
+                </div>
+                <div class="form-group">
+                    <label data-toggle="tooltip" data-placement="right" title="Example: 500, 1000">Amount of Space in Between Mutations:</label><br>
+                    {{ form.mutate_rate(size=120) }}
+                </div>
+                <br>
+                <input type="submit" name="submit" value="Create Truth VCF">
+            </div>
 
-      <!--<div class="col-sm">-->
-      <!--<img src="http://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/cc_shutterstock_338933429_16x9.jpg?itok=zaKu5Hwr" class="img-rounded" alt="Water" width="400" height="300">-->
-      <!--</div>-->
+            <!--<div class="col-sm">-->
+            <!--<img src="http://www.sciencemag.org/sites/default/files/styles/inline__450w__no_aspect/public/cc_shutterstock_338933429_16x9.jpg?itok=zaKu5Hwr" class="img-rounded" alt="Water" width="400" height="300">-->
+            <!--</div>-->
+        </div>
     </div>
-  </div>
 </form>
 
 <!-- Container (Portfolio Section) -->
 <div id="portfolio" class="container-fluid text-center bg-grey">
-  <br>
-
-  <h2>What our users say</h2>
-  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <h4>"This simulator is the best. I am so happy with the result!"<br><span>Rami, Engineering Enthusiast</span></h4>
-      </div>
-      <div class="item">
-        <h4>"One word... WOW!!"<br><span>Theo, Programming Wizard</span></h4>
-      </div>
-      <div class="item">
-        <h4>"Could I... BE any more happy with this Simulator?"<br><span>Miles, Overlord of the Interns</span></h4>
-      </div>
-    </div>
     <br>
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+
+    <h2>What our users say</h2>
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <h4>"This simulator is the best. I am so happy with the result!"<br><span>Rami, Engineering Enthusiast</span></h4>
+            </div>
+            <div class="item">
+                <h4>"One word... WOW!!"<br><span>Theo, Programming Wizard</span></h4>
+            </div>
+            <div class="item">
+                <h4>"Could I... BE any more happy with this Simulator?"<br><span>Miles, Overlord of the Interns</span></h4>
+            </div>
+        </div>
+        <br>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 
 <footer class="container-fluid text-center">

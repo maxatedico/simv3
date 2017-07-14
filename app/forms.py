@@ -3,27 +3,29 @@ from wtforms import StringField, BooleanField
 from wtforms.validators import DataRequired
 
 
+# Pipeline Form for Inputs
 class Pipeline(Form):
-    data_set = StringField('data_set_reads', validators=[DataRequired()])
-    fastar = StringField('fastar', validators=[DataRequired()])
-    base_error = StringField('base_error', validators=[DataRequired()])
+    dataset_name = StringField('data_set_reads', validators=[DataRequired()])
+    fasta_ref = StringField('fastar', validators=[DataRequired()])
+    vcf_path = StringField('vcf_path', validators=[DataRequired()])
+    bed_path = StringField('bed_file', validators=[DataRequired()])
+    mutate_rate = StringField('mutation_rate', validators=[DataRequired()])
+    base_error_rate = StringField('base_error', validators=[DataRequired()])
     indel_error = BooleanField('indel_error', default=False)
-    vcf_path = StringField('vcf_path', validators=[DataRequired()])
-    mutation_rate = StringField('mutation_rate', validators=[DataRequired()])
-    bed_file = StringField('bed_file', validators=[DataRequired()])
 
 
-
+# Mutate Form for Inputs
 class Mutate(Form):
-    data_set_mutate = StringField('data_set_mutate', validators=[DataRequired()])
-    fastar = StringField('fastar', validators=[DataRequired()])
+    dataset_mutate = StringField('data_set_mutate', validators=[DataRequired()])
+    fasta_ref = StringField('fastar', validators=[DataRequired()])
     vcf_path = StringField('vcf_path', validators=[DataRequired()])
-    mutation_rate = StringField('mutation_rate', validators=[DataRequired()])
-    bed_file = StringField('bed_file', validators=[DataRequired()])
+    bed_path = StringField('bed_file', validators=[DataRequired()])
+    mutate_rate = StringField('mutation_rate', validators=[DataRequired()])
 
 
+# Reads Form for Inputs
 class Reads(Form):
-    data_set_reads = StringField('data_set_reads', validators=[DataRequired()])
-    base_error = StringField('base_error', validators=[DataRequired()])
+    dataset_reads = StringField('data_set_reads', validators=[DataRequired()])
+    base_error_rate = StringField('base_error', validators=[DataRequired()])
     indel_error = BooleanField('indel_error', default=False)
 

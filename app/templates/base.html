@@ -248,11 +248,11 @@
                 <h2>The Pipeline</h2><br>
                 <div class="form-group">
                     <label>Dataset to Create and Populate:</label><br>
-                    {{ form.data_set(size=120) }}
+                    {{ form.dataset_name(size=120) }}
                 </div>
                 <div class="form-group">
-                    <label data-toggle="tooltip" data-placement="right" title="Example: Hg19">Reference FASTA for Dataset:</label><br>
-                    {{ form.fastar(size=120) }}
+                    <label data-toggle="tooltip" data-placement="right" title="Example: hg19">Reference FASTA for Dataset:</label><br>
+                    {{ form.fasta_ref(size=120) }}
                 </div>
                 <div class="form-group">
                     <label data-toggle="tooltip" data-placement="right" title="Example: DbSnp, Etc.">Filepath to VCF:</label><br>
@@ -260,15 +260,15 @@
                 </div>
                 <div class="form-group">
                     <label>Filepath to Bed-File:</label><br>
-                    {{ form.bed_file(size=120) }}
+                    {{ form.bed_path(size=120) }}
                 </div>
                 <div class="form-group">
                     <label data-toggle="tooltip" data-placement="right" title="Example: 500, 1000">Amount of Space in Between Mutations:</label><br>
-                    {{ form.mutation_rate(size=120) }}
+                    {{ form.mutate_rate(size=120) }}
                 </div>
                 <div class="form-group">
                     <label data-toggle="tooltip" data-placement="right" title="Example: Example: 0.5, 1">Amount of Base-Calling Error:</label><br>
-                    {{ form.base_error(size=120) }}
+                    {{ form.base_error_rate(size=120) }}
                 </div>
                 <div class="form-group">
                     <label>Indel Error</label><br>

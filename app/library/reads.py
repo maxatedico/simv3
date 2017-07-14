@@ -9,23 +9,7 @@ Config.read("../config")
 logger = logging.getLogger(__name__)
 
 
-def bgzip(file_path):
-    if '.gz' in file_path:
-        raise Exception('Input VCF must be uncompressed')
-
-    cmd = "bgzip -f " + file_path
-    logger.info('bgzip cmd:     {}'.format(cmd))
-    subprocess.check_output(cmd, shell=True)
-
-    vcf_gz = file_path + '.gz'
-
-    cmd = 'tabix -f {}'.format(vcf_gz)
-    logger.info('tabix cmd:     {}'.format(cmd))
-    subprocess.check_output(cmd, shell=True)
-
-
 # BCFTOOLS - generate FASTAS
-
 def generate_bcf(fasta_ref, truth_vcf, gender, output):
     try:
         # variables
@@ -60,7 +44,7 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
 
 # run PIRS simulation
 
-def run_pirs(base, indel, dataset_name, output, pe100, indelss, gcdeppp):
+def run_pirs(base, indel, output, pe100, indelss, gcdeppp):
     try:
         # variables
         out_dir_root = output
@@ -141,7 +125,7 @@ def get_truth_vcf(dataset_name):
 
 # main
 
-def simulate(fasta_ref, truth_vcf, base, indel, dataset_name, output, pe100, indelss, gcdeppp):
+def simulate(fasta_ref, truth_vcf, base, indel, output, pe100, indelss, gcdeppp):
 
     generate_bcf(fasta_ref, truth_vcf, 0, output)
 
@@ -152,7 +136,7 @@ def simulate(fasta_ref, truth_vcf, base, indel, dataset_name, output, pe100, ind
     logging.info('Generated second FASTA')
     logging.info('Beginning pIRS simulation')
 
-    run_pirs(base, indel, dataset_name, output, pe100, indelss, gcdeppp)
+    run_pirs(base, indel, output, pe100, indelss, gcdeppp)
 
     logging.info('Generated FASTQs')
 

@@ -1,18 +1,15 @@
 #!/usr/bin/python
 import logging
-
-logging.basicConfig(filename='app/logger.log', level=logging.INFO, filemode='w', format='%(asctime)s %(message)s', datefmt='%m/%d - %I:%M:%S')
-
-from flask import Flask, render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for
 from app import app
 from .forms import Pipeline
 from .forms import Mutate
 from .forms import Reads
 from library import reads
 from library import mutate
-from time import sleep
-import os
 import ConfigParser
+
+logging.basicConfig(filename='app/logger.log', level=logging.INFO, filemode='w', format='%(asctime)s %(message)s', datefmt='%m/%d - %I:%M:%S')
 
 Config = ConfigParser.ConfigParser()
 Config.read("app/config")
@@ -49,51 +46,56 @@ def pipeline():
     if request.method == 'POST':
 
         if request.form['submit'] == 'Create VCF and Generate Mutations':
+
+            # Acquire root directory
+            out_dir_root = Config.get('Paths', 'out_dir_root')
+
+            # Profiles
             PE100 = Config.get('Profiles', 'PE100')
             indels = Config.get('Profiles', 'indels')
             gcdep = Config.get('Profiles', 'gcdep')
-            out_dir_root = Config.get('Paths', 'out_dir_root')
+
+            # Create variables and acquire inputs
             output = out_dir_root + 'mutations.vcf'
-            bed_file_path = form.bed_file.data
-            logging.info('New VCF Path: ' + output)
-
+            bed_file_path = form.bed_path.data
+            fasta_ref = form.fasta_ref.data
             vcf = form.vcf_path.data
-            mutate_rate = int(form.mutation_rate.data)
+            mutate_rate = int(form.mutate_rate.data)
 
+            logging.info('New VCF Path: ' + output)
             logging.info("Acquired Values")
 
+            # Create downsized VCF
             mutate.mutating(mutate_rate, vcf, output, bed_file_path)
 
             logging.info("Created VCF")
 
-            fastar = form.fastar.data
-
-            mutate.check_if_dataset_exists(form.data_set.data, fastar)
-
-            mutate.upload_to_db('truth_set_vcf', form.data_set.data, output)
-
-            logging.info("Uploaded to Database")
-
-            ref = reads.get_ref(form.data_set.data)
-            fasta = reads.get_fasta_ref(ref)
-            base = form.base_error.data
-            indel = form.indel_error.data
-            newvcf = reads.get_truth_vcf(form.data_set.data)
-            newoutput = reads.get_truth_vcf(form.data_set.data)[:-13]
-
-            logging.info('Acquired Values')
-            logging.info('Reference FASTA: ' + ref)
-            logging.info('Truth VCF: ' + vcf)
-
-            reads.bgzip(vcf)
+            mutate.bgzip(vcf)
 
             logging.info('Zipped VCF')
 
-            reads.simulate(fasta, newvcf + ".gz", base, indel, form.data_set.data, newoutput, PE100, indels, gcdep)
+            mutate.check_if_dataset_exists(form.dataset_name.data, fasta_ref)
+
+            mutate.upload_to_db('truth_set_vcf', form.dataset_name.data, output)
+
+            logging.info("Uploaded to Database")
+
+            ref_number = reads.get_ref(form.dataset_name.data)
+            fasta_ref = reads.get_fasta_ref(ref_number)
+            base_error_rate = form.base_error_rate.data
+            indel_error = form.indel_error.data
+            truth_vcf = reads.get_truth_vcf(form.dataset_name.data)
+            new_output = reads.get_truth_vcf(form.dataset_name.data)[:-13]
+
+            logging.info('Acquired Values')
+            logging.info('Reference FASTA: ' + ref_number)
+            logging.info('Truth VCF: ' + truth_vcf)
+
+            reads.simulate(fasta_ref, truth_vcf + ".gz", base_error_rate, indel_error, new_output, PE100, indels, gcdep)
 
             logging.info('Finished!')
 
-            reads.upload_data(form.data_set.data, out_dir_root)
+            reads.upload_data(form.dataset_name.data, out_dir_root)
 
             logging.info("Uploaded FASTQs to Database")
 
@@ -107,12 +109,14 @@ def dbmutate():
     if request.method == 'POST':
 
         if request.form['submit'] == 'Create Truth VCF':
-            vcf = form.vcf_path.data
+
             out_dir_root = Config.get('Paths', 'out_dir_root')
+
             output = out_dir_root + 'mutations.vcf'
-            #ensure_dir(output)
-            mutate_rate = int(form.mutation_rate.data)
-            bed_file_path = form.bed_file.data
+            mutate_rate = int(form.mutate_rate.data)
+            bed_file_path = form.bed_path.data
+            vcf = form.vcf_path.data
+            fasta_ref = form.fasta_ref.data
 
             logging.info("Acquired Values")
             logging.info('New VCF Path: ' + output)
@@ -121,11 +125,13 @@ def dbmutate():
 
             logging.info("Created VCF")
 
-            fastar = form.fastar.data
+            mutate.bgzip(vcf)
 
-            mutate.check_if_dataset_exists(form.data_set.data, fastar)
+            logging.info('Zipped VCF')
 
-            mutate.upload_to_db('truth_set_vcf', form.data_set_mutate.data, output)
+            mutate.check_if_dataset_exists(form.dataset_mutate.data, fasta_ref)
+
+            mutate.upload_to_db('truth_set_vcf', form.dataset_mutate.data, output)
 
             logging.info("Uploaded to Database")
 
@@ -143,34 +149,26 @@ def simreads():
             indels = Config.get('Profiles', 'indels')
             gcdep = Config.get('Profiles', 'gcdep')
             out_dir_root = Config.get('Paths', 'out_dir_root')
-            ref = reads.get_ref(form.data_set_reads.data)
+            ref = reads.get_ref(form.dataset_reads.data)
             fasta = reads.get_fasta_ref(ref)
-            vcf = reads.get_truth_vcf(form.data_set_reads.data)
-            output = reads.get_truth_vcf(form.data_set_reads.data)[:-13]
-            base = form.base_error.data
+            vcf = reads.get_truth_vcf(form.dataset_reads.data)
+            output = reads.get_truth_vcf(form.dataset_reads.data)[:-13]
+            base = form.base_error_rate.data
             indel = form.indel_error.data
 
             logging.info('Acquired Values')
             logging.info('Reference FASTA: ' + ref)
             logging.info('Truth VCF: ' + vcf)
 
-            reads.bgzip(vcf)
-
             logging.info('Zipped VCF')
 
-            reads.simulate(fasta, vcf + ".gz", base, indel, form.data_set_reads.data, output, PE100, indels, gcdep)
+            reads.simulate(fasta, vcf + ".gz", base, indel, output, PE100, indels, gcdep)
 
             logging.info('Finished!')
 
-            reads.upload_data(form.data_set_reads.data, out_dir_root)
+            reads.upload_data(form.dataset_reads.data, out_dir_root)
 
             logging.info("Uploaded FASTQs to Database")
 
     return render_template('reads.html', title='Create Reads', form=form)
-
-
-def ensure_dir(file_path):
-    directory = os.path.dirname(file_path)
-    if not os.path.exists(directory):
-        os.makedirs(directory)
 

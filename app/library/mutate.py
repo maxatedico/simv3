@@ -12,6 +12,23 @@ Config.read("../config")
 logger = logging.getLogger(__name__)
 
 
+# Final VCF Zipper
+def bgzip(file_path):
+    if '.gz' in file_path:
+        raise Exception('Input VCF must be uncompressed')
+
+    cmd = "bgzip -f " + file_path
+    logger.info('bgzip cmd:     {}'.format(cmd))
+    subprocess.check_output(cmd, shell=True)
+
+    vcf_gz = file_path + '.gz'
+
+    cmd = 'tabix -f {}'.format(vcf_gz)
+    logger.info('tabix cmd:     {}'.format(cmd))
+    subprocess.check_output(cmd, shell=True)
+
+
+# Run VCF Downsizer
 def mutating(desired_interval, input_vcf, output_vcf, bed_file):
     previous_chromosome = None
     this_variant_position = None
@@ -30,14 +47,19 @@ def mutating(desired_interval, input_vcf, output_vcf, bed_file):
         logging.info( "Running bedtools intersect function")
         try:
             subprocess.check_output(bedtoolsrun, shell=True)
+
         except RuntimeError:
             logging.info("Bedtools failed due to runtime error.")
+
         except TypeError:
             logging.info("Bedtools failed due to type error.")
+
         except ValueError:
             logging.info("Bedtools failed due to value  error.")
+
         except NameError:
             logging.info("Bedtools failed due to name  error.")
+
     else:
         intersection_name = input_vcf
     logging.info("Beginning to take interval samples from outputted vcf")
@@ -85,6 +107,7 @@ def mutating(desired_interval, input_vcf, output_vcf, bed_file):
     logging.info("done")
 
 
+# Acquire Values from DataBase
 def get_from_db(dataset_name, key_name):
     url = "http://data.edicogenome.com/api/get"
 
@@ -101,6 +124,7 @@ def get_from_db(dataset_name, key_name):
     return res.text
 
 
+# Upload Values to Database
 def upload_to_db(key_name, dataset_name, value):
     url = "http://data.edicogenome.com/api/set"
 
@@ -118,6 +142,7 @@ def upload_to_db(key_name, dataset_name, value):
     return res.text
 
 
+# Check if Dataset Exists and if not, Create an Entry
 def check_if_dataset_exists(dataset_name, reference):
     logging.info('Check if dataset exists')
     url = "http://data.edicogenome.com/api/get"
@@ -141,6 +166,7 @@ def check_if_dataset_exists(dataset_name, reference):
         create_dna_dataset(dataset_name, reference)
 
 
+# Supporter for Above
 def post_requests(data):
     headers = {'content-type': 'application/json'}
     r = requests.post(
@@ -152,6 +178,7 @@ def post_requests(data):
     r.raise_for_status()
 
 
+# Dataset creator
 def create_dna_dataset(dataset_name, reference):
     logging.info('Create dataset: {}, with ref: {}'.
                  format(dataset_name, reference))
@@ -169,17 +196,4 @@ def create_dna_dataset(dataset_name, reference):
             {"key": 43, "value": reference, "type": "fk"}],
     }
     post_requests(data)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
