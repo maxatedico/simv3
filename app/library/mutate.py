@@ -179,8 +179,7 @@ def post_requests(data):
 
 # Dataset creator
 def create_dna_dataset(dataset_name):
-    logging.info('Create dataset: {}, with ref: {}'.
-                 format(dataset_name))
+    logging.info('Create dataset: {}, with ref: {}'.format(dataset_name))
     data = {
         "name": dataset_name,
         "group_id": "2",
