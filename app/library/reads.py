@@ -42,7 +42,7 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
 
 
 # run PIRS simulation
-def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile): 
+def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
     try:
         # variables
         out_dir_root = output
@@ -54,14 +54,14 @@ def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
 
         # generate reads
         if are_indels:
-            cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root[:-9] + "pirs --insert-len-mean=180 " \
+            cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root + "pirs --insert-len-mean=180 " \
                   "--insert-len-sd=18 --diploid --base-calling-profile=" + PE100 + " --indel-error-profile=" + \
                   indels + " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
                   " --phred-offset=33 --no-gc-bias -c \"gzip\" -t 48 " \
                   + out_dir_root + "1.fa " + " " + out_dir_root + "2.fa &> " + out_dir_root + "_pirs.log"
 
         if not are_indels:
-            cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root[:-9] + " --insert-len-mean=180 " \
+            cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root + " --insert-len-mean=180 " \
                                                                          "--insert-len-sd=18 --diploid " \
                   "--base-calling-profile=" + PE100 + " --indel-error-profile=" + indels + \
                   " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
