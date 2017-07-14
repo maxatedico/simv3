@@ -131,7 +131,7 @@ def dbmutate():
 
             mutate.check_if_dataset_exists(form.dataset_mutate.data, fasta_ref)
 
-            mutate.upload_to_db('truth_set_vcf', form.dataset_mutate.data, output)
+            mutate.upload_to_db('truth_set_vcf', form.dataset_mutate.data, output + '.gz')
 
             logging.info("Uploaded to Database")
 
@@ -160,9 +160,7 @@ def simreads():
             logging.info('Reference FASTA: ' + ref)
             logging.info('Truth VCF: ' + vcf)
 
-            logging.info('Zipped VCF')
-
-            reads.simulate(fasta, vcf + ".gz", base, indel, output, PE100, indels, gcdep)
+            reads.simulate(fasta, vcf, base, indel, output, PE100, indels, gcdep)
 
             logging.info('Finished!')
 
