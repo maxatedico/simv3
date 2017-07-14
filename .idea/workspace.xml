@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79113fa0-5d8e-4428-93e5-2aff320f1c29" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/application.py" afterPath="$PROJECT_DIR$/app/application.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config" afterPath="$PROJECT_DIR$/app/config" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/forms.py" afterPath="$PROJECT_DIR$/app/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/library/mutate.py" afterPath="$PROJECT_DIR$/app/library/mutate.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/library/reads.py" afterPath="$PROJECT_DIR$/app/library/reads.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/logger.log" afterPath="$PROJECT_DIR$/app/logger.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/base.html" afterPath="$PROJECT_DIR$/app/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/mutations.html" afterPath="$PROJECT_DIR$/app/templates/mutations.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/reads.html" afterPath="$PROJECT_DIR$/app/templates/reads.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/app/config">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -618,7 +609,7 @@
     <entry file="file://$PROJECT_DIR$/app/config">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
           <folding />
         </state>
       </provider>
