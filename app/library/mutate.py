@@ -31,20 +31,24 @@ def bgzip(file_path):
 # Run VCF Downsizer
 def mutating(desired_interval, input_vcf, output_vcf, bed_file):
     previous_chromosome = None
-    this_variant_position = None
 
     # open either vcf or vcf.gz
     logging.info("Checking if imput vcf has .gz ending")
+
     if '.gz' in input_vcf:
         import gzip
         open_gz_safe = gzip.open
+
     else:
         open_gz_safe = open
+
     if bed_file != "":
         out_dir_root = Config.get('Paths', 'out_dir_root')
         bedtoolsrun = "bedtools intersect -a " + input_vcf + " -b " + bed_file + " > " + out_dir_root
+
         logging.info(bedtoolsrun)
-        logging.info( "Running bedtools intersect function")
+        logging.info("Running bedtools intersect function")
+
         try:
             subprocess.check_output(bedtoolsrun, shell=True)
 
@@ -88,11 +92,13 @@ def mutating(desired_interval, input_vcf, output_vcf, bed_file):
 
                 if this_variant_position > target:
                     above = this_variant_position
+
                     if (above - target) < (target - below):
                         stream_out.write(line)
                         # print("interval a: ", above - ref_position)
                         # print(line)
                         ref_position = above
+
                     else:
                         if below > ref_position:
                             stream_out.write(belowline)
@@ -100,6 +106,7 @@ def mutating(desired_interval, input_vcf, output_vcf, bed_file):
                             # print(line)
                             ref_position = below
                     target = ref_position + desired_interval
+
                 else:
                     below = this_variant_position
                     belowline = line
@@ -119,8 +126,6 @@ def get_from_db(dataset_name, key_name):
 
     res = requests.get(url, params=filter)
     res.raise_for_status()
-
-    print key_name + "--" + res.text
     return res.text
 
 
@@ -137,8 +142,6 @@ def upload_to_db(key_name, dataset_name, value):
 
     res = requests.post(url, params=data)
     res.raise_for_status()
-
-    print key_name + "--" + res.text
     return res.text
 
 

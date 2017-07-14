@@ -14,7 +14,6 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
     try:
         # variables
         out_dir_root = output
-        index = out_dir_root + 'mutations.vcf.gz.gzi'
         newfasta = 'new.fa'
 
         if gender == 0:
@@ -43,29 +42,28 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
 
 
 # run PIRS simulation
-
-def run_pirs(base, indel, output, pe100, indelss, gcdeppp):
+def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
     try:
         # variables
         out_dir_root = output
         PE100 = pe100
-        indels = indelss
-        gcdep = gcdeppp
-        errorrate = base
-        areindels = indel
+        indels = indel_profile
+        gcdep = gcdep_profile
+        error_rate = base
+        are_indels = indel
 
         # generate reads
-        if areindels:
+        if are_indels:
             cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root + "pirs --insert-len-mean=180 " \
                   "--insert-len-sd=18 --diploid --base-calling-profile=" + PE100 + " --indel-error-profile=" + \
-                  indels + " --gc-bias-profile=" + gcdep + " --error-rate=" + errorrate + \
-                  " --phred-offset=33 --no-gc-bias -c gzip -t 48 " \
+                  indels + " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
+                  " --phred-offset=33 --no-gc-bias -c \"gzip\" -t 48 " \
                   + out_dir_root + "new1.fa " + " " + out_dir_root + "new2.fa &> " + out_dir_root + "pirs.log"
 
-        if not areindels:
+        if not are_indels:
             cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root + " --insert-len-mean=180 --insert-len-sd=18 --diploid " \
                   "--base-calling-profile=" + PE100 + " --indel-error-profile=" + indels + \
-                  " --gc-bias-profile=" + gcdep + " --error-rate=" + errorrate + \
+                  " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
                   " --phred-offset=33 --no-indel-errors --no-gc-bias -c \"gzip\" -t 48 " + out_dir_root \
                   + "new1.fa " + " " + out_dir_root + "new2.fa &> " + out_dir_root + "pirs.log"
 
@@ -88,7 +86,6 @@ def get_from_db(dataset_name, key_name):
 
     res = requests.get(url, params=filter)
     res.raise_for_status()
-
     return res.text
 
 
@@ -104,7 +101,6 @@ def upload_to_db(key_name, dataset_name, value):
 
     res = requests.post(url, params=data)
     res.raise_for_status()
-
     return res.text
 
 
@@ -124,7 +120,6 @@ def get_truth_vcf(dataset_name):
 
 
 # main
-
 def simulate(fasta_ref, truth_vcf, base, indel, output, pe100, indelss, gcdeppp):
 
     generate_bcf(fasta_ref, truth_vcf, 0, output)

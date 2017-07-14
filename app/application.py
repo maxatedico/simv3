@@ -15,11 +15,13 @@ Config = ConfigParser.ConfigParser()
 Config.read("app/config")
 
 
+# Redirector for '/'
 @app.route('/')
 def index():
     return redirect(url_for('pipeline'))
 
 
+# Stream for Log
 @app.route('/stream')
 def stream():
     other_root = Config.get('Paths', 'log_root')
@@ -39,6 +41,7 @@ def stream():
     return app.response_class(generate(), mimetype='text/plain')
 
 
+# Pipeline
 @app.route('/pipeline', methods=['GET', 'POST'])
 def pipeline():
     form = Pipeline()
@@ -70,16 +73,18 @@ def pipeline():
 
             logging.info("Created VCF")
 
+            # Zip
             mutate.bgzip(output)
 
             logging.info('Zipped VCF')
 
+            # Create and Uplaod to DB
             mutate.check_if_dataset_exists(form.dataset_name.data, fasta_ref)
-
-            mutate.upload_to_db('truth_set_vcf', form.dataset_name.data, output)
+            mutate.upload_to_db('truth_set_vcf', form.dataset_name.data, output + '.gz')
 
             logging.info("Uploaded to Database")
 
+            # Create and Assign Variables for PIRS
             ref_number = reads.get_ref(form.dataset_name.data)
             fasta_ref = reads.get_fasta_ref(ref_number)
             base_error_rate = form.base_error_rate.data
@@ -91,10 +96,12 @@ def pipeline():
             logging.info('Reference FASTA: ' + ref_number)
             logging.info('Truth VCF: ' + truth_vcf)
 
+            # Simulate FASTAs and Reads
             reads.simulate(fasta_ref, truth_vcf + ".gz", base_error_rate, indel_error, new_output, PE100, indels, gcdep)
 
             logging.info('Finished!')
 
+            # Upload
             reads.upload_data(form.dataset_name.data, out_dir_root)
 
             logging.info("Uploaded FASTQs to Database")
@@ -145,10 +152,12 @@ def simreads():
     if request.method == 'POST':
 
         if request.form['submit'] == 'Generate Reads':
+
             PE100 = Config.get('Profiles', 'PE100')
             indels = Config.get('Profiles', 'indels')
             gcdep = Config.get('Profiles', 'gcdep')
             out_dir_root = Config.get('Paths', 'out_dir_root')
+
             ref = reads.get_ref(form.dataset_reads.data)
             fasta = reads.get_fasta_ref(ref)
             vcf = reads.get_truth_vcf(form.dataset_reads.data)
