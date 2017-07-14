@@ -125,7 +125,7 @@ def dbmutate():
 
             logging.info("Created VCF")
 
-            mutate.bgzip(vcf)
+            mutate.bgzip(output)
 
             logging.info('Zipped VCF')
 
