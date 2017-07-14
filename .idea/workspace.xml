@@ -20,8 +20,8 @@
       <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="951">
-              <caret line="162" column="37" lean-forward="false" selection-start-line="162" selection-start-column="37" selection-end-line="162" selection-end-column="37" />
+            <state relative-caret-position="31">
+              <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
               <folding>
                 <element signature="e#18#32#0" expanded="true" />
               </folding>
@@ -54,8 +54,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="270" column="43" lean-forward="false" selection-start-line="270" selection-start-column="43" selection-end-line="270" selection-end-column="43" />
+            <state relative-caret-position="260">
+              <caret line="277" column="58" lean-forward="false" selection-start-line="277" selection-start-column="58" selection-end-line="277" selection-end-column="70" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -66,7 +66,7 @@
       <file leaf-file-name="reads.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/reads.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
+            <state relative-caret-position="131">
               <caret line="254" column="32" lean-forward="true" selection-start-line="254" selection-start-column="32" selection-end-line="254" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -556,30 +556,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/reads.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="254" column="32" lean-forward="true" selection-start-line="254" selection-start-column="32" selection-end-line="254" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/mutations.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="250" column="32" lean-forward="false" selection-start-line="250" selection-start-column="32" selection-end-line="250" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="270" column="43" lean-forward="false" selection-start-line="270" selection-start-column="43" selection-end-line="270" selection-end-column="43" />
+        <state relative-caret-position="260">
+          <caret line="277" column="58" lean-forward="false" selection-start-line="277" selection-start-column="58" selection-end-line="277" selection-end-column="70" />
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -604,10 +584,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/reads.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="254" column="32" lean-forward="true" selection-start-line="254" selection-start-column="32" selection-end-line="254" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/mutations.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="250" column="32" lean-forward="false" selection-start-line="250" selection-start-column="32" selection-end-line="250" selection-end-column="32" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="951">
-          <caret line="162" column="37" lean-forward="false" selection-start-line="162" selection-start-column="37" selection-end-line="162" selection-end-column="37" />
+        <state relative-caret-position="31">
+          <caret line="47" column="50" lean-forward="false" selection-start-line="47" selection-start-column="50" selection-end-line="47" selection-end-column="50" />
           <folding>
             <element signature="e#18#32#0" expanded="true" />
           </folding>

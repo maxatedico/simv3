@@ -45,7 +45,7 @@ def pipeline():
 
     if request.method == 'POST':
 
-        if request.form['submit'] == 'Create VCF and Generate Mutations':
+        if request.form['submit'] == 'Run Pipeline':
 
             # Acquire root directory
             out_dir_root = Config.get('Paths', 'out_dir_root')
