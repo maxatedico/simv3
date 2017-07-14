@@ -93,7 +93,7 @@ def pipeline():
             base_error_rate = form.base_error_rate.data
             indel_error = form.indel_error.data
             truth_vcf = reads.get_truth_vcf(dataset_name)
-            new_output = reads.get_truth_vcf(dataset_name)[:-13]
+            new_output = reads.get_truth_vcf(dataset_name)[:-7]
 
             logging.info('Acquired Values')
             logging.info('Reference FASTA: ' + ref_number)
