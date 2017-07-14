@@ -82,7 +82,7 @@ def pipeline():
 
             # Create and Uplaod to DB
             mutate.check_if_dataset_exists(dataset_name)
-            mutate.upload_to_db('ref-type', dataset_name, fasta_ref)
+            mutate.upload_to_db('ref_type', dataset_name, fasta_ref)
             mutate.upload_to_db('truth_set_vcf', dataset_name, output + '.gz')
 
             logging.info("Uploaded to Database")
