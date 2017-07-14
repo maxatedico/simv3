@@ -2,9 +2,7 @@
 import logging
 import ConfigParser
 import requests
-import os
 import subprocess
-import sys
 import json
 
 Config = ConfigParser.ConfigParser()
@@ -95,16 +93,18 @@ def mutating(desired_interval, input_vcf, output_vcf, bed_file):
 
                     if (above - target) < (target - below):
                         stream_out.write(line)
-                        # print("interval a: ", above - ref_position)
-                        # print(line)
                         ref_position = above
 
                     else:
+
                         if below > ref_position:
                             stream_out.write(belowline)
-                            # print("interval b: ", below - ref_position)
-                            # print(line)
                             ref_position = below
+
+                        else:
+                            stream_out.write(line)
+                            ref_position = above
+
                     target = ref_position + desired_interval
 
                 else:

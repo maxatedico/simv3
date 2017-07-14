@@ -15,7 +15,7 @@ Config = ConfigParser.ConfigParser()
 Config.read("app/config")
 
 
-# Redirector for '/'
+# Redirect for '/'
 @app.route('/')
 def index():
     return redirect(url_for('pipeline'))
@@ -49,7 +49,6 @@ def pipeline():
     if request.method == 'POST':
 
         if request.form['submit'] == 'Run Pipeline':
-
             # Acquire root directory
             out_dir_root = Config.get('Paths', 'out_dir_root')
 
@@ -65,7 +64,6 @@ def pipeline():
             fasta_ref = form.fasta_ref.data
             vcf = form.vcf_path.data
             mutate_rate = int(form.mutate_rate.data)
-
 
             logging.info('New VCF Path: ' + output)
             logging.info("Acquired Values")
@@ -139,8 +137,8 @@ def dbmutate():
 
             logging.info('Zipped VCF')
 
-            mutate.check_if_dataset_exists(form.dataset_mutate.data, fasta_ref)
-
+            mutate.check_if_dataset_exists(form.dataset_mutate.data)
+            mutate.upload_to_db('ref_type', form.dataset_mutate.data, fasta_ref)
             mutate.upload_to_db('truth_set_vcf', form.dataset_mutate.data, output + '.gz')
 
             logging.info("Uploaded to Database")
