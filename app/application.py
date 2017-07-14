@@ -97,7 +97,7 @@ def pipeline():
             logging.info('Truth VCF: ' + truth_vcf)
 
             # Simulate FASTAs and Reads
-            reads.simulate(fasta_ref, truth_vcf + ".gz", base_error_rate, indel_error, new_output, PE100, indels, gcdep)
+            reads.simulate(fasta_ref, truth_vcf, base_error_rate, indel_error, new_output, PE100, indels, gcdep)
 
             logging.info('Finished!')
 

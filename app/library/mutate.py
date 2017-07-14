@@ -186,6 +186,6 @@ def create_dna_dataset(dataset_name):
         "group_id": "2",
         "user": "simulator",
     }
-    
+
     post_requests(data)
 
