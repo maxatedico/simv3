@@ -14,13 +14,13 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
     try:
         # variables
         out_dir_root = output
-        newfasta = 'new.fa'
+        newfasta = '.fa'
 
         if gender == 0:
-            newfasta = 'new1.fa'
+            newfasta = '1.fa'
 
         if gender == 1:
-            newfasta = 'new2.fa'
+            newfasta = '2.fa'
 
         # execute
         if gender == 0:
@@ -42,7 +42,7 @@ def generate_bcf(fasta_ref, truth_vcf, gender, output):
 
 
 # run PIRS simulation
-def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
+def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile): 
     try:
         # variables
         out_dir_root = output
