@@ -105,7 +105,7 @@ def pipeline():
             logging.info('Finished!')
 
             # Upload
-            reads.upload_data(dataset_name, out_dir_root)
+            reads.upload_data(dataset_name, new_output)
 
             logging.info("Uploaded FASTQs to Database")
 

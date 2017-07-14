@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="79113fa0-5d8e-4428-93e5-2aff320f1c29" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/application.py" afterPath="$PROJECT_DIR$/app/application.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/library/reads.py" afterPath="$PROJECT_DIR$/app/library/reads.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="application.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="95" column="62" lean-forward="false" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
+            <state relative-caret-position="331">
+              <caret line="107" column="54" lean-forward="false" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="54" />
               <folding>
                 <element signature="e#18#32#0" expanded="true" />
               </folding>
@@ -41,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reads.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="reads.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/library/reads.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="141" column="86" lean-forward="true" selection-start-line="141" selection-start-column="86" selection-end-line="141" selection-end-column="86" />
+            <state relative-caret-position="391">
+              <caret line="141" column="67" lean-forward="false" selection-start-line="141" selection-start-column="67" selection-end-line="141" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -116,8 +117,8 @@
         <option value="$PROJECT_DIR$/app/templates/reads.html" />
         <option value="$PROJECT_DIR$/app/templates/mutations.html" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
-        <option value="$PROJECT_DIR$/app/library/reads.py" />
         <option value="$PROJECT_DIR$/app/library/mutate.py" />
+        <option value="$PROJECT_DIR$/app/library/reads.py" />
         <option value="$PROJECT_DIR$/app/application.py" />
       </list>
     </option>
@@ -537,21 +538,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/library/reads.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="141" column="86" lean-forward="true" selection-start-line="141" selection-start-column="86" selection-end-line="141" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="95" column="62" lean-forward="false" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
+        <state relative-caret-position="331">
+          <caret line="107" column="54" lean-forward="false" selection-start-line="107" selection-start-column="54" selection-end-line="107" selection-end-column="54" />
           <folding>
             <element signature="e#18#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/library/reads.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="141" column="67" lean-forward="false" selection-start-line="141" selection-start-column="67" selection-end-line="141" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>

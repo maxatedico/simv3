@@ -58,14 +58,14 @@ def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
                   "--insert-len-sd=18 --diploid --base-calling-profile=" + PE100 + " --indel-error-profile=" + \
                   indels + " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
                   " --phred-offset=33 --no-gc-bias -c \"gzip\" -t 48 " \
-                  + out_dir_root + "new1.fa " + " " + out_dir_root + "new2.fa &> " + out_dir_root + "pirs.log"
+                  + out_dir_root + "1.fa " + " " + out_dir_root + "2.fa &> " + out_dir_root + "_pirs.log"
 
         if not are_indels:
             cmd = "pirs simulate -l 100 -x 20 -o " + out_dir_root + " --insert-len-mean=180 --insert-len-sd=18 --diploid " \
                   "--base-calling-profile=" + PE100 + " --indel-error-profile=" + indels + \
                   " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
                   " --phred-offset=33 --no-indel-errors --no-gc-bias -c \"gzip\" -t 48 " + out_dir_root \
-                  + "new1.fa " + " " + out_dir_root + "new2.fa &> " + out_dir_root + "pirs.log"
+                  + "1.fa " + " " + out_dir_root + "2.fa &> " + out_dir_root + "_pirs.log"
 
         logger.info("pirs cmd:     {}".format(cmd))
         subprocess.check_output(cmd, shell=True)
@@ -138,5 +138,5 @@ def simulate(fasta_ref, truth_vcf, base, indel, output, pe100, indelss, gcdeppp)
 
 def upload_data(dataset_name, root):
     out_dir_root = root
-    upload_to_db('fastq_location_1', dataset_name, out_dir_root + 'pirs_100_180_1.fq')
-    upload_to_db('fastq_location_2', dataset_name, out_dir_root + 'pirs_100_180_2.fq')
+    upload_to_db('fastq_location_1', dataset_name, out_dir_root + '_100_180_1.fq')
+    upload_to_db('fastq_location_2', dataset_name, out_dir_root + '_100_180_2.fq')
