@@ -10,7 +10,7 @@ def clean_up(input_error):
 
         path = "/mnt/archive/adam_and_max/"
         cmd = path + "clean_read_info.pl_ < " + input_error + " > " + path + "clean.read.info"
-        cmd_2 = path + "xform_read.info.pl_ < " + path + "clean.read.info > " + path + "read.info.xform"
+        cmd_2 = path + "xform_read_info.pl_ < " + path + "clean.read.info > " + path + "read.info.xform"
 
         print cmd
         print cmd_2
