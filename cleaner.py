@@ -9,7 +9,7 @@ def clean_up(input_error):
     try:
 
         path = "/mnt/archive/adam_and_max/"
-        cmd = path + "clean_read_info.pl < " + path + input_error + " > " + path + "clean.read.info"
+        cmd = path + "clean_read_info.pl < " + input_error + " > " + path + "clean.read.info"
         cmd_2 = path + "xform_read.info.pl < " + path + "clean.read.info > " + path + "read.info.xform"
 
         logger.info("Clean-Up Command: {}".format(cmd))
@@ -20,3 +20,5 @@ def clean_up(input_error):
     except Exception() as e:
         logging.error('Error message %s' % e)
         raise
+
+clean_up("/mnt/archive/sim_data/pirs_simulator/vlrd_chr1_normalNoise_varRate0.002_indelErrors1_errorRate1_varRate0.002")
