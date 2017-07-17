@@ -17,11 +17,11 @@ def clean_up(input_error):
 
         #logger.info("Clean-Up Command: {}".format(cmd))
         #logger.info("ReAlign Command: {}".format(cmd_2))
-        #subprocess.check_output(cmd, shell=True)
-        #subprocess.check_output(cmd_2, shell=True)
+        subprocess.check_output(cmd, shell=True)
+        subprocess.check_output(cmd_2, shell=True)
 
     except Exception() as e:
         #logging.error('Error message %s' % e)
         raise
 
-clean_up("/mnt/archive/sim_data/pirs_simulator/vlrd_chr1_normalNoise_varRate0.002_indelErrors1_errorRate1_varRate0.002")
+clean_up("/mnt/archive/sim_data/pirs_simulator/vlrd_chr1_normalNoise_varRate0.002_indelErrors1_errorRate1_varRate0.002/pirs_100_180.read.info.gz")
