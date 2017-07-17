@@ -54,7 +54,7 @@ def run_pirs(base, indel, output, pe100, indel_profile, gcdep_profile):
 
         # generate reads
         if are_indels:
-            cmd = "pirs simulate -l 100 -x 30 -o " + out_dir_root + "pirs --insert-len-mean=180 " \
+            cmd = "pirs simulate -l 100 -x 30 -o " + out_dir_root + " --insert-len-mean=180 " \
                   "--insert-len-sd=18 --diploid --base-calling-profile=" + PE100 + " --indel-error-profile=" + \
                   indels + " --gc-bias-profile=" + gcdep + " --error-rate=" + error_rate + \
                   " --phred-offset=33 --no-gc-bias -c \"gzip\" -t 48 " \

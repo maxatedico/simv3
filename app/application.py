@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import logging
 from flask import render_template, request, redirect, url_for
+from celery import Celery
 from app import app
 from .forms import Pipeline
 from .forms import Mutate
@@ -8,6 +9,12 @@ from .forms import Reads
 from library import reads
 from library import mutate
 import ConfigParser
+
+app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
+
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
 
 logging.basicConfig(filename='app/logger.log', level=logging.INFO, filemode='w', format='%(asctime)s %(message)s', datefmt='%m/%d - %I:%M:%S')
 
@@ -22,12 +29,13 @@ def index():
 
 
 # Stream for Log
-@app.route('/stream')
+#@app.route('/stream')
+@celery.task
 def stream():
     other_root = Config.get('Paths', 'log_root')
 
-    def generate():
-        with open(other_root + 'logger.log') as f:
+    #def generate():
+    with open(other_root + 'logger.log') as f:
             lines = f.readlines()
             liner = [x.strip() + '\n' for x in lines]
             result = []
@@ -38,7 +46,7 @@ def stream():
                         result.pop(0)
             return result
 
-    return app.response_class(generate(), mimetype='text/plain')
+    #return app.response_class(generate(), mimetype='text/plain')
 
 
 # Pipeline
@@ -49,6 +57,8 @@ def pipeline():
     if request.method == 'POST':
 
         if request.form['submit'] == 'Run Pipeline':
+
+            #stream.delay()
             # Acquire root directory
             out_dir_root = Config.get('Paths', 'out_dir_root')
 
